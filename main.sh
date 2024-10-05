@@ -32,15 +32,18 @@ else
     echo "Authentication Method for GlueTun set to an unknown parameter: $gtn_auth"
     exit 1
 fi
-
+if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
+    echo "requestst command to gtn: curl --fail --silent --show-error $gtn_authstring --location $gtn_addr/v1/openvpn/portforwarded "
+fi
 port_number=$(curl --fail --silent --show-error $gtn_authstring --location $gtn_addr/v1/openvpn/portforwarded | jq '.port')
+if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
+    echo "Port Feedback from GTN was $port_number"
+fi
 if [ ! "$port_number" ] || [ "$port_number" = "0" ]; then
     echo "Could not get current forwarded port from $gtn_addr/v1/openvpn/portforwarded , exiting..."
     exit 1
 fi
-if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
-    echo "Port Feedback from GTN was $port_number"
-fi
+
 
 curl --fail --silent --show-error --cookie-jar /tmp/cookies.txt --cookie /tmp/cookies.txt --header "Referer: $qbt_addr" --data "username=$qbt_username" --data "password=$qbt_password" $qbt_addr/api/v2/auth/login 1> /dev/null
 
