@@ -17,7 +17,7 @@ gtn_authstring=""
 if [ "$gtn_auth" = "basic" ]; then
     gtn_authstring="-u $gtn_username -p $gtn_password"
 elif [ "$gtn_auth" = "api" ]; then
-    gtn_authstring="-H "X-API-Key: $gtn_apikey"
+    gtn_authstring='-H "X-API-Key: $gtn_apikey"'
 else
     echo "Authentication Method for GlueTun set to an unknown parameter: $gtn_auth"
     exit 1
