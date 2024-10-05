@@ -19,7 +19,7 @@ fi
 
 # create auth string for CURL requests
 if [ "$gtn_auth" = "basic" ]; then
-    gtn_authstring='-u "'$gtn_username':'$gtn_password'"'
+    gtn_authstring='--user "'$gtn_username':'$gtn_password'"'
     if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 2 ]; then
         echo "authstring set to: $gtn_authstring"
     fi
@@ -33,9 +33,9 @@ else
     exit 1
 fi
 
-port_number=$(curl --fail --silent --show-error $gtn_authstring $gtn_addr/v1/openvpn/portforwarded | jq '.port')
+port_number=$(curl --fail --silent --show-error $gtn_authstring --location $gtn_addr/v1/openvpn/portforwarded | jq '.port')
 if [ ! "$port_number" ] || [ "$port_number" = "0" ]; then
-    echo "Could not get current forwarded port from gluetun, exiting..."
+    echo "Could not get current forwarded port from $gtn_addr/v1/openvpn/portforwarded , exiting..."
     exit 1
 fi
 if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
