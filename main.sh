@@ -13,19 +13,19 @@ gtn_apikey="${GTN_API_KEY:-123456789}" # Use only with "api" auth
 
 gtn_authstring=""
 
-if [ "$VERBOSE" ] && [ "$VERBOSE" ge 1 ]; then
+if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
     echo "GTN Auth Method set to: $gtn_auth"
 fi
 
 # create auth string for CURL requests
 if [ "$gtn_auth" = "basic" ]; then
     gtn_authstring='-u "'$gtn_username':'$gtn_password'"'
-    if [ "$VERBOSE" ] && [ "$VERBOSE" ge 2 ]; then
+    if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 2 ]; then
         echo "authstring set to: $gtn_authstring"
     fi
 elif [ "$gtn_auth" = "api" ]; then
     gtn_authstring='-H "X-API-Key: '$gtn_apikey'"'
-    if [ "$VERBOSE" ] && [ "$VERBOSE" ge 2 ]; then
+    if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 2 ]; then
         echo "authstring set to: $gtn_authstring"
     fi
 else
@@ -38,7 +38,7 @@ if [ ! "$port_number" ] || [ "$port_number" = "0" ]; then
     echo "Could not get current forwarded port from gluetun, exiting..."
     exit 1
 fi
-if [ "$VERBOSE" ] && [ "$VERBOSE" ge 1 ]; then
+if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
     echo "Port Feedback from GTN was $port_number"
 fi
 
@@ -46,7 +46,7 @@ curl --fail --silent --show-error --cookie-jar /tmp/cookies.txt --cookie /tmp/co
 
 listen_port=$(curl --fail --silent --show-error --cookie-jar /tmp/cookies.txt --cookie /tmp/cookies.txt $qbt_addr/api/v2/app/preferences | jq '.listen_port')
 
-if [ "$VERBOSE" ] && [ "$VERBOSE" ge 1 ]; then
+if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
     echo "Current QBT listening port is: $listen_port"
 fi
 
