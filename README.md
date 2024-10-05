@@ -16,6 +16,7 @@ A shell script and Docker container for automatically setting qBittorrent's list
 | GTN_PASSWORD | `admin`                     | `admin`                      | Only to be set when GTN_AUTH is set to `basic`              |
 | GTN_API_KEY  | `123456789`                 | `123456789`                  | Only to be set when GTN_AUTH is set to `api`              |
 | GTN_AUTH     | `basic`                     | `basic`                      | Gluetun Control server reuqires Auth. Possible options are `basic` or `api`. |
+| VERBOSE      | `1`                         | ` `                          | Enables more verbose output. `1` is basic info level and `2` outputs the authstring as well. |
 
 ### Gluetun Control Server Auth
 As of Version 3.40 Gluetun Control server will require authentication set up. Please refer to the gluetun wiki for instructions to set up authentication.
