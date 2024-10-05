@@ -19,7 +19,7 @@ fi
 
 # create auth string for CURL requests
 if [ "$gtn_auth" = "basic" ]; then
-    gtn_authstring='--user "'$gtn_username':'$gtn_password'"'
+    gtn_authstring="--user ${gtn_username}:${gtn_password}"
     if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 2 ]; then
         echo "authstring set to: $gtn_authstring"
     fi
@@ -32,7 +32,7 @@ else
     echo "Authentication Method for GlueTun set to an unknown parameter: $gtn_auth"
     exit 1
 fi
-if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 1 ]; then
+if [ "$VERBOSE" ] && [ "$VERBOSE" -ge 2 ]; then
     echo "requestst command to gtn: curl --fail --silent --show-error $gtn_authstring --location $gtn_addr/v1/openvpn/portforwarded "
 fi
 port_number=$(curl --fail --silent --show-error $gtn_authstring --location $gtn_addr/v1/openvpn/portforwarded | jq '.port')
