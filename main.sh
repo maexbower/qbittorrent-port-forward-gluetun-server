@@ -6,7 +6,7 @@ qbt_password="${QBT_PASSWORD:-adminadmin}"
 qbt_addr="${QBT_ADDR:-http://localhost:8080}" # ex. http://10.0.1.48:8080
 gtn_addr="${GTN_ADDR:-http://localhost:8000}" # ex. http://10.0.1.48:8000
 # Gluetun Control Server auth is mandatory starting from Version 3.40.0
-gtn_auth="basic" # Possible auth methods are "basic" and "api"
+gtn_auth="${GTN_AUTH:-basic}" # Possible auth methods are "basic" and "api"
 gtn_username="${GTN_USERNAME:-admin}" # Use only with "basic" auth
 gtn_password="${GTN_PASSWORD:-admin}" # Use only with "basic" auth
 gtn_apikey="${GTN_API_KEY:-123456789}" # Use only with "api" auth
