@@ -12,6 +12,13 @@ A shell script and Docker container for automatically setting qBittorrent's list
 | QBT_PASSWORD | `password`                  | `adminadmin`                 | qBittorrent password                                            |
 | QBT_ADDR     | `http://192.168.1.100:8080` | `http://localhost:8080`      | HTTP URL for the qBittorrent web UI, with port                  |
 | GTN_ADDR     | `http://192.168.1.100:8000` | `http://localhost:8000`      | HTTP URL for the gluetun control server, with port              |
+| GTN_USERNAME | `admin`                     | `admin`                      | Only to be set when GTN_AUTH is set to `basic`              |
+| GTN_PASSWORD | `admin`                     | `admin`                      | Only to be set when GTN_AUTH is set to `basic`              |
+| GTN_API_KEY  | `123456789`                 | `123456789`                  | Only to be set when GTN_AUTH is set to `api`              |
+| GTN_AUTH     | `basic`                     | `basic`                      | Gluetun Control server reuqires Auth. Possible options are `basic or `api`. |
+
+### Gluetun Control Server Auth
+As of Version 3.40 Gluetun Control server will require authentication set up. Please refer to the gluetun wiki for instructions to set up authentication.
 
 ## Example
 
